@@ -1,0 +1,26 @@
+### get all users
+GET http://localhost:3000/users
+
+### find user by id
+GET http://localhost:3000/users/2
+
+### create user
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+    "name": "nguyen quy",
+    "email": "quys123@gmail.com",
+    "password": "123456"
+}
+
+### update user
+PATCH  http://localhost:3000/users/2
+content-type: application/json
+
+{
+    "password": "23456"
+}
+
+### delete user
+DELETE http://localhost:3000/users/1
