@@ -1,2 +1,28 @@
 ### get all product
 GET http://localhost:3000/products
+
+### get by id
+GET http://localhost:3000/products/3
+
+### create product
+POST http://localhost:3000/products
+content-type: application/json
+
+{
+    "name": "TV nho",
+    "price": 2200,
+    "description": "TV Samsung 55 inch"
+}
+
+### update product
+PATCH http://localhost:3000/products/5
+content-type: application/json
+
+{
+    "name": "TV 1",
+    "price": 2400,
+    "description": "TV Samsung 55 inch"
+}
+
+### delete product
+DELETE http://localhost:3000/products/6
