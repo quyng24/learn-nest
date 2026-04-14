@@ -1,0 +1,17 @@
+POST http://localhost:3000/auth/register
+content-type: application/json
+
+{
+    "name": "quy",
+    "email": "quy24.dev@gmail.com",
+    "password": "123456"
+}
+
+### login
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{
+    "email": "quy24.dev@gmail.com",
+    "password": "123456"
+}

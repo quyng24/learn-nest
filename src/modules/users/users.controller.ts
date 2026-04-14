@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { UserEntity } from './users.entity';
+import { UserEntity } from 'src/entities/User';
 
 @Controller('/users')
 export class UsersController {
