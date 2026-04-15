@@ -19,7 +19,9 @@ PATCH  http://localhost:3000/users/2
 content-type: application/json
 
 {
-    "password": "23456"
+    "name": "Nguyen Quy",
+    "email": "nquy50771@gmail.com",
+    "password": "12345"
 }
 
 ### delete user

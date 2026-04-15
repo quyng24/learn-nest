@@ -4,6 +4,7 @@ import { UserEntity } from 'src/entities/User';
 
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { RegisterDto } from '../auth/dto/auth-public.dto';
 
 @Injectable()
 export class UsersService {
@@ -26,25 +27,22 @@ export class UsersService {
   }
 
   async validateUser(email: string, password: string) {
-    const user = await this.findEmail(email);
-    if (!user) return null;
-    const status = bcrypt.compareSync(password, user.password);
-    if (status) return user;
-    return null;
-  }
+  const user = await this.findEmail(email);
+  if (!user || !user.password) return null;
 
-  async create(userData: Partial<UserEntity>) {
+  const status = bcrypt.compareSync(password, user.password);
+  return status ? user : null;
+}
+
+  async create(userData: Partial<RegisterDto>) {
     if (!userData.password) {
       throw new Error('Password is required');
     }
 
     const user = this.userRepository.create(userData);
+    user.password = await bcrypt.hash(userData.password as string, 10);
     user.created_at = new Date();
     user.updated_at = new Date();
-
-    const hashPassword: string = await bcrypt.hash(userData.password as string, 10);
-    user.password = hashPassword;
-    console.log(user);
     return this.userRepository.save(user);
   }
 

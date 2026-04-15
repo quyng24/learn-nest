@@ -8,6 +8,7 @@ import { ProductsModule } from './modules/products/products.module';
 import { ProductEntity } from './entities/Product';
 import { UserEntity } from './entities/User';
 import { AuthModule } from './modules/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AuthModule } from './modules/auth/auth.module';
       entities: [UserEntity, ProductEntity],
       synchronize: true,
     }),
+    ConfigModule.forRoot({ isGlobal: true }),
     ProductsModule,
     AuthModule,
   ],

@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserEntity } from 'src/entities/User';
+import { Roles } from 'src/decorators/role.decorator';
 
 @Controller('/users')
 export class UsersController {
@@ -24,11 +25,13 @@ export class UsersController {
     return this.userService.findOne(+id);
   }
 
+
   @Post()
-  createUser(@Body() userData: Partial<UserEntity>) {
+  createUser(@Body() userData: UserEntity) {
     return this.userService.create(userData);
   }
 
+  @Roles('admin')
   @Patch('/:id')
   updateUser(@Param('id') id: string, @Body() userData: Partial<UserEntity>) {
     return this.userService.update(+id, userData);
